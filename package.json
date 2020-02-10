@@ -1,0 +1,24 @@
+{
+  "name": "eia2-ws19",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@types/node": "^13.7.0",
+    "sudo": "^1.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/girrbacv/EIA2-WS19.git"
+  },
+  "author": "Verena",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/girrbacv/EIA2-WS19/issues"
+  },
+  "homepage": "https://github.com/girrbacv/EIA2-WS19#readme"
+}
