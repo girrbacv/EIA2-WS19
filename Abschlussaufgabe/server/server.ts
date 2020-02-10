@@ -12,7 +12,7 @@ export namespace Endabgabe{
     let dbCollection: string = "score";
 
   
-    databaseURL = "mongodb://localhost:27017";
+    databaseURL = "mongodb+srv://test:1234@eia2girrbacv-ssh9w.mongodb.net/test?retryWrites=true&w=majority";
     
 
     let port: number | string | undefined = process.env.PORT;
