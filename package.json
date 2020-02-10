@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node ./Abschlussaufgabe/server/server.js"
+    "start": "node .EIA2-WS19/Abschlussaufgabe/server/server.js"
   },
   "repository": {
     "type": "git",
@@ -22,3 +22,5 @@
   },
   "homepage": "https://github.com/girrbacv/EIA2-WS19#readme"
 }
+
+
