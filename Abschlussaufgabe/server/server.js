@@ -19,7 +19,7 @@ var Endabgabe;
     let databaseURL;
     let dbName = "eia";
     let dbCollection = "score";
-    databaseURL = "mongodb://localhost:27017";
+    databaseURL = "mongodb+srv://test:1234@eia2girrbacv-ep9wt.mongodb.net/test?retryWrites=true&w=majority";
     let port = process.env.PORT;
     if (port == undefined)
         port = 5001;
