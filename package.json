@@ -1,10 +1,10 @@
 {
-  "name": "eia2-ws19",
+  "name": "eia2ws19",
   "version": "1.0.0",
   "description": "Abschlussaufgabe",
   "main": "index.js",
   "scripts": {
-    "start": "node ./EIA2-WS19/Abschlussaufgabe/server/server.js"
+    "start": "node EIA2-WS19/Abschlussaufgabe/server/server.js"
   },
   "repository": {
     "type": "git",
