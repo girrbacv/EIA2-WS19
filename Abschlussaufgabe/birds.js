@@ -12,9 +12,14 @@ var Endabgabe;
         move() {
             if (this.xP <= 0)
                 this.xP = Endabgabe.canvas.width;
-            this.pick();
+            /*if (this.md == true)
+                this.pick();
+
+            else {*/
+            this.fly();
+            //}
         }
-        pick() {
+        fly() {
             this.xD = Math.random() * (-20);
             this.yD = Math.random() * (0);
             this.xP += this.xD;

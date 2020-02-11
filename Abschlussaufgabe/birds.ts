@@ -6,7 +6,7 @@ namespace Endabgabe {
         colorBody: string;
         colorKopfFluegel: string;
         md: boolean;
-        typ= "birds";
+        typ = "birds";
 
         constructor() {
             super();
@@ -19,13 +19,16 @@ namespace Endabgabe {
         move(): void {
             if (this.xP <= 0)
             this.xP = canvas.width;
-            
-
+            /*if (this.md == true)
                 this.pick();
-            
+
+            else {*/
+
+            this.fly();
+            //}
         }
 
-        pick(): void {
+        fly(): void {
 
             this.xD = Math.random() * (-20);
             this.yD = Math.random() * (0);

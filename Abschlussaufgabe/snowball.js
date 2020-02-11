@@ -24,9 +24,9 @@ var Endabgabe;
             Endabgabe.crc2.stroke();
         }
         move() {
-            this.scale -= 7;
-            this.xP += this.xD / 10;
-            this.yP += this.yD / 10;
+            this.scale -= 1;
+            this.xP += this.xD / 30;
+            this.yP += this.yD / 30;
         }
     }
     Endabgabe.Snowball = Snowball;
