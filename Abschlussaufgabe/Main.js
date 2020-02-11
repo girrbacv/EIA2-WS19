@@ -2,6 +2,7 @@
 var Endabgabe;
 (function (Endabgabe) {
     window.addEventListener("load", init);
+    let server = "https://girrbacv2.herokuapp.com";
     let golden = 0.62;
     let objects = [];
     let birds = [];

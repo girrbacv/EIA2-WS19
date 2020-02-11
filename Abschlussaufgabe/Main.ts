@@ -3,9 +3,11 @@
 namespace Endabgabe {
 
     window.addEventListener("load", init);
+ 
 
     export let crc2: CanvasRenderingContext2D;
 
+    let server: string = "https://girrbacv2.herokuapp.com";
     let golden: number = 0.62;
     let objects: DrawObject[] = [];
     let birds: Birds[] = [];
@@ -26,6 +28,9 @@ namespace Endabgabe {
         console.log("listeners");
 
         document.getElementsByTagName("canvas")[0].addEventListener("click", mouseEvent);
+        document.getElementsByTagName("canvas")[0].addEventListener("contextmenu", handleRightClick);
+       
+        //canvas.addEventListener("contextmenu", handleRightClick);
         //"Click"-Eventlistener vom Typ MouseEvent an canvas
 
     }
@@ -73,6 +78,7 @@ namespace Endabgabe {
         generateBirds();
         //generatePickingBird();
         generateSnow();
+
 
 
         imagedata = crc2.getImageData(0, 0, canvas.width, canvas.height);
@@ -135,6 +141,8 @@ namespace Endabgabe {
         objects.push(snowball);
     }
 
+
+
     function mouseEvent(_event: MouseEvent): void {
         if (!snowball) {
             xMouse = _event.clientX;
@@ -142,6 +150,7 @@ namespace Endabgabe {
             generateSnowball(xMouse, yMouse);
         }
     }
+
 
     function checkIfHit(): void {
         for (let i: number = 0; i < birds.length; i++) {
