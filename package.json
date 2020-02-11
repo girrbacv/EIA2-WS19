@@ -15,9 +15,10 @@
   "dependencies": {
     "@types/mongodb": "^3.3.1",
     "mongodb": "^3.3.2"
-    }
+  },
+  "bugs": {
+    "url": "https://github.com/girrbacv/EIA2-WS19/issues"
+  },
+  "homepage": "https://github.com/girrbacv/EIA2-WS19#readme",
+  "devDependencies": {}
 }
-
-
-
-
