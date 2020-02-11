@@ -1,3 +1,4 @@
+//import { start } from "repl";
 var Endabgabe;
 (function (Endabgabe) {
     window.addEventListener("load", init);
@@ -12,48 +13,57 @@ var Endabgabe;
     let snowball;
     Endabgabe.score = 0;
     let gameEndbool = false;
-    let trees = [];
+    let start;
     function listeners() {
         console.log("listeners");
         document.getElementsByTagName("canvas")[0].addEventListener("click", mouseEvent);
         //"Click"-Eventlistener vom Typ MouseEvent an canvas
     }
     function init() {
-        let anleitung = document.getElementById("Anleitung");
-        anleitung.addEventListener("click", startGame);
-        let ende = document.getElementById("ende");
-        ende.classList.add("canvassize");
-        //Nach laden der Seite wird die Funktion init aufgerufen, die an das HtmlElement "Anleitung" einen click-Eventlistener anhängt, 
-        //der die Funktion startGame aufruft
-        //an das HTML Element "ende" die Klasse 
+        document.getElementById("start").addEventListener("click", startGame);
+        document.getElementById("ende").classList.add("invisible");
     }
+    //Nach laden der Seite wird die Funktion init aufgerufen, die an das HtmlElement "Start" einen click-Eventlistener anhängt, 
+    //der die Funktion startGame aufruft
+    //an das HTML Element "ende" die Klasse 
     function startGame() {
         let nameinput = document.getElementById("nameinput");
         Endabgabe.name = nameinput.value;
         anzeigeCanvas();
         listeners();
         console.log("maininit");
-        let canvas = document.getElementsByTagName("canvas")[0];
-        Endabgabe.crc2 = canvas.getContext("2d");
+        Endabgabe.canvas = document.getElementsByTagName("canvas")[0];
+        Endabgabe.crc2 = Endabgabe.canvas.getContext("2d");
         drawBackground();
-        drawSun();
-        drawCloud();
-        drawCloud2();
-        drawCloud3();
-        drawMountains();
-        drawBirdhouse();
-        drawSnowman();
-        drawTrees();
-        //generateChild();
-        //generateSlowChildren();
+        Endabgabe.drawClouds();
+        console.log("Clouds", Endabgabe.drawClouds);
+        Endabgabe.drawMountains();
+        console.log("Mountains", Endabgabe.drawMountains);
+        Endabgabe.drawBirdhouse();
+        console.log("Birdhouse", Endabgabe.drawBirdhouse);
+        Endabgabe.drawSnowman();
+        console.log("Snowman", Endabgabe.drawSnowman);
+        Endabgabe.drawTrees();
+        console.log("Trees", Endabgabe.drawTrees);
+        generateBirds();
+        //generatePickingBird();
         generateSnow();
-        imagedata = Endabgabe.crc2.getImageData(0, 0, canvas.width, canvas.height);
+        imagedata = Endabgabe.crc2.getImageData(0, 0, Endabgabe.canvas.width, Endabgabe.canvas.height);
         setTimeout(gameEnds, 180000);
         update();
     }
+    function drawBackground() {
+        console.log("Background");
+        let gradiant = Endabgabe.crc2.createLinearGradient(0, 0, 0, Endabgabe.crc2.canvas.height);
+        gradiant.addColorStop(0, "HSL(197,71%,73%");
+        gradiant.addColorStop(golden, "white");
+        gradiant.addColorStop(1, "HSL(0, 100%, 99%)");
+        Endabgabe.crc2.fillStyle = gradiant;
+        Endabgabe.crc2.fillRect(0, 0, Endabgabe.crc2.canvas.width, Endabgabe.crc2.canvas.height);
+    }
     function anzeigeCanvas() {
-        document.getElementsByTagName("canvas")[0].classList.remove("canvassize");
-        document.getElementsByTagName("div")[0].classList.add("canvassize");
+        document.getElementsByTagName("canvas")[0].classList.remove("invisible");
+        document.getElementsByTagName("div")[0].classList.add("invisible");
     }
     function update() {
         Endabgabe.crc2.clearRect(0, 0, 1400, 900);
@@ -81,8 +91,6 @@ var Endabgabe;
         //            console.log(snowball);
         console.log("neuer schneeball");
         objects.push(snowball);
-    }
-    function drawTrees() {
     }
     function mouseEvent(_event) {
         if (!snowball) {
@@ -128,125 +136,6 @@ var Endabgabe;
         }
         snowball = null;
     }
-    function drawMountains() {
-        //Hintere Reihe
-        Endabgabe.crc2.fillStyle = "HSLA(360,0%,41%)";
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.moveTo(390, 210);
-        Endabgabe.crc2.lineTo(550, 400);
-        Endabgabe.crc2.lineTo(170, 400);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        Endabgabe.crc2.fillStyle = "HSLA(0,100%,99%)";
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.moveTo(390, 210);
-        Endabgabe.crc2.lineTo(435, 260);
-        Endabgabe.crc2.lineTo(330, 260);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        Endabgabe.crc2.fillStyle = "HSLA(360,0%,41%)";
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.moveTo(630, 110);
-        Endabgabe.crc2.lineTo(400, 400);
-        Endabgabe.crc2.lineTo(700, 400);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        Endabgabe.crc2.fillStyle = "HSLA(0,100%,99%)";
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.moveTo(630, 109);
-        Endabgabe.crc2.lineTo(597, 150);
-        Endabgabe.crc2.lineTo(640, 150);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        Endabgabe.crc2.fillStyle = "HSLA(360,0%,41%)";
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.moveTo(790, 170);
-        Endabgabe.crc2.lineTo(600, 400);
-        Endabgabe.crc2.lineTo(920, 400);
-        Endabgabe.crc2.moveTo(910, 110);
-        Endabgabe.crc2.lineTo(700, 400);
-        Endabgabe.crc2.lineTo(1200, 400);
-        Endabgabe.crc2.moveTo(1150, 110);
-        Endabgabe.crc2.lineTo(1000, 400);
-        Endabgabe.crc2.lineTo(1400, 400);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        Endabgabe.crc2.fillStyle = "HSLA(0,100%,99%)";
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.moveTo(1150, 110);
-        Endabgabe.crc2.lineTo(1127, 150);
-        Endabgabe.crc2.lineTo(1186, 150);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        //Vordere Reihe
-        Endabgabe.crc2.fillStyle = "HSLA(360,0%,83%)";
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.moveTo(130, 170);
-        Endabgabe.crc2.lineTo(400, 400);
-        Endabgabe.crc2.lineTo(-100, 400);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.moveTo(520, 290);
-        Endabgabe.crc2.lineTo(350, 400);
-        Endabgabe.crc2.lineTo(550, 400);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.moveTo(800, 270);
-        Endabgabe.crc2.lineTo(400, 400);
-        Endabgabe.crc2.lineTo(890, 400);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.moveTo(1000, 100);
-        Endabgabe.crc2.lineTo(800, 400);
-        Endabgabe.crc2.lineTo(1200, 400);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.moveTo(1300, 230);
-        Endabgabe.crc2.lineTo(1000, 400);
-        Endabgabe.crc2.lineTo(1400, 400);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        Endabgabe.crc2.fillStyle = "HSLA(0,100%,99%)";
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.moveTo(1000, 100);
-        Endabgabe.crc2.lineTo(965, 150);
-        Endabgabe.crc2.lineTo(1035, 150);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-    }
-    /*function drawTrees(): void {
-    crc2.fillStyle = "HSLA(25,76%,31%)";
-    crc2.beginPath();
-    crc2.fillRect(300, 500, 25, 80); //310
-    crc2.fillRect(500, 500, 25, 80); //500
-    crc2.fillRect(400, 470, 23, 80); //410
-    crc2.fillRect(700, 650, 23, 80); //710
-    crc2.closePath();
-    crc2.fill();
-
-    crc2.fillStyle = "HSLA(120,100%,20%)"
-    crc2.beginPath();
-    crc2.moveTo(310, 300);
-    crc2.lineTo(260, 500);
-    crc2.lineTo(360, 500);
-    crc2.moveTo(410, 350);
-    crc2.lineTo(360, 520);
-    crc2.lineTo(460, 520);
-    crc2.moveTo(510, 300);
-    crc2.lineTo(460, 500);
-    crc2.lineTo(560, 500);
-    crc2.moveTo(710, 450);
-    crc2.lineTo(660, 650);
-    crc2.lineTo(760, 650);
-    crc2.closePath();
-    crc2.fill();
-
-
-}*/
     //Schnee
     function generateSnow() {
         for (let i = 0; i < 70; i++) {
@@ -254,8 +143,8 @@ var Endabgabe;
             objects.push(snowflake);
         }
     }
-    function generateBird() {
-        for (let i = 0; i < 5; i++) {
+    function generateBirds() {
+        for (let i = 0; i < 15; i++) {
             let bird = new Endabgabe.Birds();
             objects.push(bird);
             birds.push(bird);
@@ -270,11 +159,9 @@ var Endabgabe;
         }
     }*/
     function gameEnds() {
-        document.getElementsByTagName("canvas")[0].classList.add("canvassize");
-        let ende = document.getElementById("ende");
-        ende.classList.remove("canvassize");
-        let reload = document.getElementById("reload");
-        ende.classList.remove("canvassize");
+        document.getElementsByTagName("canvas")[0].classList.add("invisible");
+        document.getElementById("ende").classList.remove("invisible");
+        document.getElementById("reload").classList.remove("invisible");
         document.getElementById("yourScore").innerText = "Deine Punktzahl:" + " " + Endabgabe.score.toString();
         document.getElementById("reload").addEventListener("click", reload);
         DatabaseClient.insert();
@@ -282,151 +169,6 @@ var Endabgabe;
     }
     function reload() {
         window.location.reload();
-    }
-    function drawCloud() {
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.arc(70, 170, 45, 0, 2 * Math.PI);
-        Endabgabe.crc2.arc(140, 170, 60, 0, 2 * Math.PI);
-        Endabgabe.crc2.arc(200, 170, 45, 0, 2 * Math.PI);
-        Endabgabe.crc2.arc(240, 170, 30, 0, 2 * Math.PI);
-        Endabgabe.crc2.fillStyle = "#FFFFFF";
-        Endabgabe.crc2.fill();
-    }
-    function drawCloud2() {
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.arc(650, 100, 30, 0, 2 * Math.PI);
-        Endabgabe.crc2.arc(810, 100, 60, 0, 2 * Math.PI);
-        Endabgabe.crc2.arc(870, 100, 40, 0, 2 * Math.PI);
-        Endabgabe.crc2.arc(750, 100, 70, 0, 2 * Math.PI);
-        Endabgabe.crc2.arc(700, 100, 50, 0, 2 * Math.PI);
-        Endabgabe.crc2.fillStyle = "#FFFFFF";
-        Endabgabe.crc2.fill();
-    }
-    function drawCloud3() {
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.arc(595, 220, 15, 0, 2 * Math.PI);
-        Endabgabe.crc2.arc(620, 220, 25, 0, 2 * Math.PI);
-        Endabgabe.crc2.arc(650, 220, 30, 0, 2 * Math.PI);
-        Endabgabe.crc2.arc(680, 220, 25, 0, 2 * Math.PI);
-        Endabgabe.crc2.arc(705, 220, 15, 0, 2 * Math.PI);
-        Endabgabe.crc2.arc(720, 220, 10, 0, 2 * Math.PI);
-        Endabgabe.crc2.arc(730, 220, 8, 0, 2 * Math.PI);
-        Endabgabe.crc2.arc(740, 220, 6, 0, 2 * Math.PI);
-        Endabgabe.crc2.fillStyle = "#FFFFFF";
-        Endabgabe.crc2.fill();
-    }
-    function drawBackground() {
-        console.log("Background");
-        let gradiant = Endabgabe.crc2.createLinearGradient(0, 0, 0, Endabgabe.crc2.canvas.height);
-        gradiant.addColorStop(0, "HSL(197,71%,73%");
-        gradiant.addColorStop(golden, "white");
-        gradiant.addColorStop(1, "HSL(0, 100%, 99%)");
-        Endabgabe.crc2.fillStyle = gradiant;
-        Endabgabe.crc2.fillRect(0, 0, Endabgabe.crc2.canvas.width, Endabgabe.crc2.canvas.height);
-    }
-    function drawSun() {
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.arc(150, 100, 70, 0, 2 * Math.PI);
-        Endabgabe.crc2.fillStyle = "#fff91d";
-        Endabgabe.crc2.fill();
-    }
-    function drawBirdhouse() {
-        //Pfahl
-        Endabgabe.crc2.fillStyle = "HSLA(34,57%,70%)";
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.fillRect(100, 500, 15, 100);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        //Häuschen
-        Endabgabe.crc2.fillStyle = "HSLA(34,57%,70%)";
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.fillRect(78, 480, 60, 40);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        //"Loch"
-        Endabgabe.crc2.fillStyle = "black";
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.arc(108, 500, 10, 0, 2 * Math.PI);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        //Dach
-        Endabgabe.crc2.fillStyle = "HSLA(0,53%,58%)";
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.moveTo(110, 430);
-        Endabgabe.crc2.lineTo(68, 480);
-        Endabgabe.crc2.lineTo(150, 480);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-    }
-    //Bäume
-    /*function drawTrees(): void {
-        crc2.fillStyle = "HSLA(25,76%,31%)";
-        crc2.beginPath();
-        crc2.fillRect(300, 500, 25, 80); //310
-        crc2.fillRect(500, 500, 25, 80); //500
-        crc2.fillRect(400, 470, 23, 80); //410
-        crc2.fillRect(700, 650, 23, 80); //710
-        crc2.closePath();
-        crc2.fill();
-
-        crc2.fillStyle = "HSLA(120,100%,20%)"
-        crc2.beginPath();
-        crc2.moveTo(310, 300);
-        crc2.lineTo(260, 500);
-        crc2.lineTo(360, 500);
-        crc2.moveTo(410, 350);
-        crc2.lineTo(360, 520);
-        crc2.lineTo(460, 520);
-        crc2.moveTo(510, 300);
-        crc2.lineTo(460, 500);
-        crc2.lineTo(560, 500);
-        crc2.moveTo(710, 450);
-        crc2.lineTo(660, 650);
-        crc2.lineTo(760, 650);
-        crc2.closePath();
-        crc2.fill();
-
-
-    }*/
-    //Schneemann
-    function drawSnowman() {
-        //Unterste Kugel
-        Endabgabe.crc2.fillStyle = "#FdF5E6";
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.arc(900, 550, 50, 0, 2 * Math.PI);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        //Mittlere Kugel
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.arc(900, 480, 40, 0, 2 * Math.PI);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        //Kopf
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.arc(899, 420, 30, 0, 2 * Math.PI);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        //Nase
-        Endabgabe.crc2.fillStyle = "HSLA(16,100%,50%)";
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.moveTo(860, 430);
-        Endabgabe.crc2.lineTo(893, 420);
-        Endabgabe.crc2.lineTo(893, 430);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        //Augen
-        Endabgabe.crc2.fillStyle = "black";
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.arc(885, 413, 4, 0, 2 * Math.PI);
-        Endabgabe.crc2.arc(900, 413, 4, 0, 2 * Math.PI);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
-        //Hut
-        Endabgabe.crc2.beginPath();
-        Endabgabe.crc2.fillRect(862, 380, 70, 20);
-        Endabgabe.crc2.fillRect(875, 347, 45, 50);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fill();
     }
     function drawScore() {
         Endabgabe.crc2.beginPath();

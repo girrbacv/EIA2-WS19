@@ -3,29 +3,25 @@ var Endabgabe;
     class Birds extends Endabgabe.DrawObject {
         constructor() {
             super();
-            this.xP = Math.random() * 300 + 150;
-            this.yP = Math.random() * 100 + 360;
+            this.typ = "birds";
+            this.xP = Math.random() * Endabgabe.canvas.width;
+            this.yP = Math.random() * Endabgabe.canvas.height;
             this.colorBody = "hsl(" + Math.random() * 360 + ", 90%, 80%)";
+            this.colorKopfFluegel = "hsl(" + Math.random() * 100 + ", 90%, 80%)";
         }
         move() {
-            if (this.md == true)
-                this.moveDown();
-            else {
-                this.moveUp();
-            }
+            if (this.xP <= 0)
+                this.xP = Endabgabe.canvas.width;
+            /*if (this.md == true)
+                this.pick();
+
+            else {*/
+            this.fly();
+            //}
         }
-        moveDown() {
-            this.xD = 10;
-            this.yD = 3;
-            this.xP += this.xD;
-            this.yP += this.yD;
-            if (this.xP > 1400) {
-                this.md = false;
-            }
-        }
-        moveUp() {
-            this.xD = Math.random() * (-10);
-            this.yD = Math.random() * (-3);
+        fly() {
+            this.xD = Math.random() * (-20);
+            this.yD = Math.random() * (0);
             this.xP += this.xD;
             this.yP += this.yD;
             if (this.xP < 50) {
@@ -34,28 +30,43 @@ var Endabgabe;
             this.draw();
         }
         draw() {
-            //Kinder
+            //Schnabel
+            Endabgabe.crc2.fillStyle = "#F49A32";
             Endabgabe.crc2.beginPath();
-            Endabgabe.crc2.fillStyle = "#FFD8BE";
-            Endabgabe.crc2.arc(this.xP - 20, this.yP - 10, 8, 0, 2 * Math.PI);
+            Endabgabe.crc2.moveTo(this.xP, this.yP + 135);
+            Endabgabe.crc2.lineTo(this.xP + 50, this.yP + 120);
+            Endabgabe.crc2.lineTo(this.xP + 50, this.yP + 160);
+            Endabgabe.crc2.closePath();
             Endabgabe.crc2.fill();
-            Endabgabe.crc2.beginPath();
+            //Körper
             Endabgabe.crc2.fillStyle = this.colorBody;
-            Endabgabe.crc2.fillRect(this.xP - 25, this.yP + 2, 15, 30);
-            Endabgabe.crc2.stroke();
-            Endabgabe.crc2.fill();
-            //Schlitten
             Endabgabe.crc2.beginPath();
-            Endabgabe.crc2.moveTo(this.xP - 37, this.yP + 25);
-            Endabgabe.crc2.lineTo(this.xP - 10, this.yP + 42);
-            Endabgabe.crc2.lineTo(this.xP - 6, this.yP + 43);
-            Endabgabe.crc2.lineWidth = 3;
-            Endabgabe.crc2.lineCap = "round";
-            Endabgabe.crc2.strokeStyle = "#000000";
+            Endabgabe.crc2.ellipse(this.xP + 100, this.yP + 150, 30, 50, -7.7, 0, 2 * Math.PI);
             Endabgabe.crc2.stroke();
+            Endabgabe.crc2.closePath();
+            Endabgabe.crc2.fill();
+            //Flügel
+            Endabgabe.crc2.fillStyle = this.colorKopfFluegel;
+            Endabgabe.crc2.beginPath();
+            Endabgabe.crc2.moveTo(this.xP + 83, this.yP + 135);
+            Endabgabe.crc2.lineTo(this.xP + 120, this.yP + 135);
+            Endabgabe.crc2.lineTo(this.xP + 100, this.yP + 165);
+            Endabgabe.crc2.closePath();
+            Endabgabe.crc2.fill();
+            //Kopf
+            Endabgabe.crc2.fillStyle = this.colorKopfFluegel;
+            Endabgabe.crc2.beginPath();
+            Endabgabe.crc2.arc(this.xP + 50, this.yP + 139, 22, 0, 2 * Math.PI);
+            Endabgabe.crc2.closePath();
+            Endabgabe.crc2.fill();
+            //Auge
+            Endabgabe.crc2.fillStyle = "black";
+            Endabgabe.crc2.beginPath();
+            Endabgabe.crc2.arc(this.xP + 40, this.yP + 130, 4, 0, 2 * Math.PI);
+            Endabgabe.crc2.closePath();
             Endabgabe.crc2.fill();
         }
     }
     Endabgabe.Birds = Birds;
 })(Endabgabe || (Endabgabe = {}));
-//# sourceMappingURL=birds.js.map
+//# sourceMappingURL=Birds.js.map

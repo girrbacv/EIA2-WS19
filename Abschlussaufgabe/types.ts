@@ -1,5 +1,5 @@
 namespace Endabgabe {
-    //Emmi
+    
     interface AssocStringString {
         [key: string]: string;
     }

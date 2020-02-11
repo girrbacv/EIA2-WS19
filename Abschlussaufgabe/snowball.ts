@@ -3,7 +3,7 @@ namespace Endabgabe {
     export class Snowball extends DrawObject {
         scale: number;
         target: number[];
-        typ: "snowball";
+        typ= "snowball";
 
         constructor(_x: number, _y: number) {
             super();
@@ -32,7 +32,7 @@ namespace Endabgabe {
 
         move(): void {
 
-            this.scale -= 1;
+            this.scale -= 3;
 
 
             this.xP += this.xD /  30;

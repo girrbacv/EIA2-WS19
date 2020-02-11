@@ -1,34 +1,6 @@
 namespace Endabgabe {
-        
-    export class Tree extends DrawObject {  
-        
 
-        constructor() {
-            super();
-            this.xP = 300;
-            this.yP = 500;
-            this.xD = 25;
-            this.yD = 80;
-            
-           
-        }
-
-        draw(): void {
-            
-            crc2.beginPath();
-            crc2.fillStyle = "HSLA(25,76%,31%)";
-            crc2.fillRect(this.xP, this.yP, this.xD, this.yD);
-            crc2.fillRect(this.xP + 200, this.yP, this.xD, this.yD);    
-            crc2.fillRect(this.xP + 100, this.yP - 30, this.xD - 2, this.yD); 
-            crc2.fillRect(this.xP + 400, this.yP + 150, this.xD - 2, this.yD);     
-            crc2.fill();
-
-
-        }
-    }
-    
-    
-    /*function drawTrees(): void {
+    export function drawTrees(): void {
         crc2.fillStyle = "HSLA(25,76%,31%)";
         crc2.beginPath();
         crc2.fillRect(300, 500, 25, 80); //310
@@ -54,7 +26,8 @@ namespace Endabgabe {
         crc2.lineTo(760, 650);
         crc2.closePath();
         crc2.fill();
+        
     
     
-        }*/
     }
+}
