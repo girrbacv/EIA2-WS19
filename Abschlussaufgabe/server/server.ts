@@ -1,18 +1,17 @@
-console.log("Hallo");
 import * as Http from "http";
 import * as Url from "url";
 import * as Mongo from "mongodb";
 
-export namespace Endabgabe{
-
+export namespace Endabgabe {
+   
     let highscore: Mongo.Collection;
     let databaseURL: string;
 
     let dbName: string = "eia";
     let dbCollection: string = "score";
 
-  
-    databaseURL = "mongodb+srv://test:1234@eia2girrbacv-ep9wt.mongodb.net/test?retryWrites=true&w=majority";
+    
+    databaseURL = "mongodb+srv://test:1234@cluster0-jkn7c.mongodb.net/test?retryWrites=true&w=majority";
     
 
     let port: number | string | undefined = process.env.PORT;
@@ -61,15 +60,15 @@ export namespace Endabgabe{
                 console.log("urlQuery: ", url.query);
                 let jsonString: string = JSON.stringify(url.query);
                 _response.write(jsonString);
-                highscore.insert(url.query);
-                console.log(jsonString);
+                highscore.insert(url.query); // sagt was in die collection eingetragen werden soll (url.query wird eingetragen)
+                console.log(jsonString); 
             }
         }
         _response.end();
     }
 
     async function retrieveOrders(): Promise<any[] | string> {
-        // console.log("Asking DB about Orders ", orders.find());
+        // console.log("Asking DB about Orders ", highscore.find());
         let cursor: Mongo.Cursor = await highscore.find();
         let answer: Promise<any[]> = await cursor.toArray();
         console.log("DB CursorToArray", answer);
@@ -80,5 +79,4 @@ export namespace Endabgabe{
             return "We encountered tecnical problems. Please try again later";
     }
 
-    
 }
