@@ -73,7 +73,7 @@ namespace Endabgabe {
         generateSnow();
 
         imagedata = crc2.getImageData(0, 0, canvas.width, canvas.height);
-        setTimeout(gameEnds, 1);
+        setTimeout(gameEnds, 180000);
 
         update();
     }
