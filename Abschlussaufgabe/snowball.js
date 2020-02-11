@@ -19,14 +19,14 @@ var Endabgabe;
             Endabgabe.crc2.arc(this.xP, this.yP, this.scale, 0, 3 * Math.PI);
             Endabgabe.crc2.fillStyle = "#FFFFFF";
             Endabgabe.crc2.fill();
-            Endabgabe.crc2.lineWidth = 2.0;
+            Endabgabe.crc2.lineWidth = 3.0;
             Endabgabe.crc2.strokeStyle = "#9d9c9d";
             Endabgabe.crc2.stroke();
         }
         move() {
-            this.scale -= 3;
-            this.xP += this.xD / 30;
-            this.yP += this.yD / 30;
+            this.scale -= 7;
+            this.xP += this.xD / 10;
+            this.yP += this.yD / 10;
         }
     }
     Endabgabe.Snowball = Snowball;

@@ -23,7 +23,7 @@ namespace Endabgabe {
             crc2.arc(this.xP, this.yP, this.scale, 0, 3 * Math.PI);
             crc2.fillStyle = "#FFFFFF";
             crc2.fill();
-            crc2.lineWidth = 2.0;
+            crc2.lineWidth = 3.0;
             crc2.strokeStyle = "#9d9c9d";
             crc2.stroke();
 
@@ -32,11 +32,11 @@ namespace Endabgabe {
 
         move(): void {
 
-            this.scale -= 3;
+            this.scale -= 7;
 
 
-            this.xP += this.xD /  30;
-            this.yP += this.yD / 30;
+            this.xP += this.xD / 10;
+            this.yP += this.yD / 10;
 
         }
 

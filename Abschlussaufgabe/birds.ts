@@ -19,16 +19,13 @@ namespace Endabgabe {
         move(): void {
             if (this.xP <= 0)
             this.xP = canvas.width;
-            /*if (this.md == true)
+            
+
                 this.pick();
-
-            else {*/
-
-                this.fly();
-            //}
+            
         }
 
-        fly(): void {
+        pick(): void {
 
             this.xD = Math.random() * (-20);
             this.yD = Math.random() * (0);
@@ -44,7 +41,7 @@ namespace Endabgabe {
 
         draw(): void {
            
-     
+        //Prototyp Vogel
         //Schnabel
 
         crc2.fillStyle = "#F49A32";

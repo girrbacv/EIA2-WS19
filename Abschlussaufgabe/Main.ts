@@ -3,10 +3,9 @@
 namespace Endabgabe {
 
     window.addEventListener("load", init);
- 
 
     export let crc2: CanvasRenderingContext2D;
-
+    
     let server: string = "https://girrbacv2.herokuapp.com";
     let golden: number = 0.62;
     let objects: DrawObject[] = [];
@@ -17,8 +16,8 @@ namespace Endabgabe {
     let xMouse: number;
     let yMouse: number;
     let snowball: Snowball;
-    export let name: string;
-    export let score: number = 0;
+    //export let name: string;
+    //export let score: number = 0;
     let gameEndbool: boolean = false;
     export let canvas: HTMLCanvasElement;
     let start: HTMLButtonElement;
@@ -28,19 +27,14 @@ namespace Endabgabe {
         console.log("listeners");
 
         document.getElementsByTagName("canvas")[0].addEventListener("click", mouseEvent);
-        document.getElementsByTagName("canvas")[0].addEventListener("contextmenu", handleRightClick);
-       
-        //canvas.addEventListener("contextmenu", handleRightClick);
         //"Click"-Eventlistener vom Typ MouseEvent an canvas
 
     }
     function init(): void {
         document.getElementById("start").addEventListener("click", startGame);
         document.getElementById("ende").classList.add("invisible");
-        
-
     }
-    //Nach laden der Seite wird die Funktion init aufgerufen, die an das HtmlElement "Start" einen click-Eventlistener anhängt, 
+    //Nach laden der Seite wird die Funktion init aufgerufen, die an das HtmlElement "Anleitung" einen click-Eventlistener anhängt, 
     //der die Funktion startGame aufruft
     //an das HTML Element "ende" die Klasse 
 
@@ -52,11 +46,14 @@ namespace Endabgabe {
         anzeigeCanvas();
         listeners();
 
-
         console.log("maininit");
 
         canvas = document.getElementsByTagName("canvas")[0];
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
+
+
+        // document.getElementById("startscreen").classList.add("invisible");
+        
 
         drawBackground();
 
@@ -75,10 +72,9 @@ namespace Endabgabe {
         drawTrees();
         console.log("Trees", drawTrees);
 
-        generateBirds();
+        generateBird();
         //generatePickingBird();
         generateSnow();
-
 
 
         imagedata = crc2.getImageData(0, 0, canvas.width, canvas.height);
@@ -88,7 +84,7 @@ namespace Endabgabe {
     }
 
     function drawBackground(): void {
-        console.log("Background");       
+        console.log("Background");
         let gradiant: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
         gradiant.addColorStop(0, "HSL(197,71%,73%");
         gradiant.addColorStop(golden, "white");
@@ -141,8 +137,6 @@ namespace Endabgabe {
         objects.push(snowball);
     }
 
-
-
     function mouseEvent(_event: MouseEvent): void {
         if (!snowball) {
             xMouse = _event.clientX;
@@ -150,7 +144,6 @@ namespace Endabgabe {
             generateSnowball(xMouse, yMouse);
         }
     }
-
 
     function checkIfHit(): void {
         for (let i: number = 0; i < birds.length; i++) {
@@ -192,7 +185,7 @@ namespace Endabgabe {
             }
         }
         snowball = null;
-    }   
+    }
 
 
 
@@ -205,7 +198,7 @@ namespace Endabgabe {
         }
     }
 
-    function generateBirds(): void {
+    function generateBird(): void {
         for (let i: number = 0; i < 15; i++) {
 
             let bird: Birds = new Birds();
@@ -217,9 +210,9 @@ namespace Endabgabe {
     /*function pickingBirds(): void {
         for (let i: number = 0; i < 5; i++) {
     
-            let child: slowChildren = new slowChildren();
-            objects.push(child);
-            children.push(child);
+            let bird: pickinBbird = new pickingBird();
+            objects.push(birds);
+            birds.push(bird);
         }
     }*/
 
@@ -238,13 +231,6 @@ namespace Endabgabe {
     function reload(): void {
         window.location.reload();
     }
-
-   
-
-
-
-    
-
 
     function drawScore(): void {
         crc2.beginPath();
@@ -271,6 +257,5 @@ namespace Endabgabe {
 
 
     }
-
 
 }

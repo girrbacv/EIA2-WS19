@@ -12,14 +12,9 @@ var Endabgabe;
         move() {
             if (this.xP <= 0)
                 this.xP = Endabgabe.canvas.width;
-            /*if (this.md == true)
-                this.pick();
-
-            else {*/
-            this.fly();
-            //}
+            this.pick();
         }
-        fly() {
+        pick() {
             this.xD = Math.random() * (-20);
             this.yD = Math.random() * (0);
             this.xP += this.xD;
@@ -30,6 +25,7 @@ var Endabgabe;
             this.draw();
         }
         draw() {
+            //Prototyp Vogel
             //Schnabel
             Endabgabe.crc2.fillStyle = "#F49A32";
             Endabgabe.crc2.beginPath();
@@ -69,4 +65,4 @@ var Endabgabe;
     }
     Endabgabe.Birds = Birds;
 })(Endabgabe || (Endabgabe = {}));
-//# sourceMappingURL=Birds.js.map
+//# sourceMappingURL=birds.js.map

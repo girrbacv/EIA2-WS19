@@ -2,7 +2,7 @@
 var Endabgabe;
 (function (Endabgabe) {
     window.addEventListener("load", init);
-    let server = "https://girrbacv2.herokuapp.com";
+    let server = "https://ljubaska2.herokuapp.com/";
     let golden = 0.62;
     let objects = [];
     let birds = [];
@@ -18,15 +18,13 @@ var Endabgabe;
     function listeners() {
         console.log("listeners");
         document.getElementsByTagName("canvas")[0].addEventListener("click", mouseEvent);
-        document.getElementsByTagName("canvas")[0].addEventListener("contextmenu", handleRightClick);
-        //canvas.addEventListener("contextmenu", handleRightClick);
         //"Click"-Eventlistener vom Typ MouseEvent an canvas
     }
     function init() {
         document.getElementById("start").addEventListener("click", startGame);
         document.getElementById("ende").classList.add("invisible");
     }
-    //Nach laden der Seite wird die Funktion init aufgerufen, die an das HtmlElement "Start" einen click-Eventlistener anhängt, 
+    //Nach laden der Seite wird die Funktion init aufgerufen, die an das HtmlElement "Anleitung" einen click-Eventlistener anhängt, 
     //der die Funktion startGame aufruft
     //an das HTML Element "ende" die Klasse 
     function startGame() {
@@ -37,6 +35,8 @@ var Endabgabe;
         console.log("maininit");
         Endabgabe.canvas = document.getElementsByTagName("canvas")[0];
         Endabgabe.crc2 = Endabgabe.canvas.getContext("2d");
+        // document.getElementById("startscreen").classList.add("invisible");
+        //Nachfragen
         drawBackground();
         Endabgabe.drawClouds();
         console.log("Clouds", Endabgabe.drawClouds);
@@ -48,7 +48,7 @@ var Endabgabe;
         console.log("Snowman", Endabgabe.drawSnowman);
         Endabgabe.drawTrees();
         console.log("Trees", Endabgabe.drawTrees);
-        generateBirds();
+        generateBird();
         //generatePickingBird();
         generateSnow();
         imagedata = Endabgabe.crc2.getImageData(0, 0, Endabgabe.canvas.width, Endabgabe.canvas.height);
@@ -146,7 +146,7 @@ var Endabgabe;
             objects.push(snowflake);
         }
     }
-    function generateBirds() {
+    function generateBird() {
         for (let i = 0; i < 15; i++) {
             let bird = new Endabgabe.Birds();
             objects.push(bird);
@@ -156,9 +156,9 @@ var Endabgabe;
     /*function pickingBirds(): void {
         for (let i: number = 0; i < 5; i++) {
     
-            let child: slowChildren = new slowChildren();
-            objects.push(child);
-            children.push(child);
+            let bird: pickinBbird = new pickingBird();
+            objects.push(birds);
+            birds.push(bird);
         }
     }*/
     function gameEnds() {
